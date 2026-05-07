@@ -1,31 +1,37 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
-        // Crear tienda
+        Scanner scanner = new Scanner(System.in);
         Tienda tienda = new Tienda("Mi Tienda Tech");
 
-        // Crear productos
-        Producto p1 = new Producto(1, "Teclado Mecánico", 89.99, 15);
-        Producto p2 = new Producto(2, "Ratón Inalámbrico", 45.50, 30);
-        Producto p3 = new Producto(3, "Monitor 24\"", 199.99, 0);
+        System.out.println("¿Cuántos productos desea agregar?");
+        int cantidad = scanner.nextInt();
+        scanner.nextLine();
 
-        // Agregar a la tienda
-        tienda.agregarProducto(p1);
-        tienda.agregarProducto(p2);
-        tienda.agregarProducto(p3);
+        for (int i = 1; i <= cantidad; i++) {
+            System.out.println("\n-- Producto " + i + " --");
 
-        // Mostrar catálogo
-        tienda.mostrarCatalogo();
+            System.out.print("Nombre: ");
+            String nombre = scanner.nextLine();
 
-        // Buscar producto y reducir stock
-        System.out.println("\n--- Comprando 3 teclados ---");
-        Producto encontrado = tienda.buscarPorId(1);
-        if (encontrado != null) {
-            encontrado.reducirStock(3);
+            System.out.print("Precio: ");
+            double precio = scanner.nextDouble();
+
+            System.out.print("Stock: ");
+            int stock = scanner.nextInt();
+            scanner.nextLine();
+
+            Producto p = new Producto(i, nombre, precio, stock);
+            tienda.agregarProducto(p);
         }
 
-        // Valor total del inventario
+        tienda.mostrarCatalogo();
+
         System.out.println("\n💰 Valor total del inventario: "
                 + tienda.calcularValorInventario() + " €");
+
+        scanner.close();
     }
 }
