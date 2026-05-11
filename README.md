@@ -18,4 +18,4 @@ de la Programación Orientada a Objetos en Java.
 3. Ejecuta: java -cp src Main
 
 ## 🛠️ Tecnologías
-- Java 25
+- Java 17
